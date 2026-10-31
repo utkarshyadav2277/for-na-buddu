@@ -1,0 +1,1577 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-pink: #ff608f;
+  --secondary-pink: #ff85a2;
+  --blush-pink: #ffd6e0;
+  --romantic-red: #ff3366;
+  --candy-red: #e61c5d;
+  --soft-purple: #c084fc;
+  --vibrant-purple: #a855f7;
+  --deep-purple: #3b0764;
+  --midnight-purple: #1e0533;
+  --gold-glow: #ffd166;
+  --card-bg: rgba(255, 255, 255, 0.16);
+  --card-border: rgba(255, 255, 255, 0.45);
+  --glass-shadow: 0 12px 40px 0 rgba(168, 85, 247, 0.35);
+  --text-white: #ffffff;
+  --text-pastel: #ffe4e6;
+  --font-main: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-fun: 'Fredoka', cursive, sans-serif;
+  --font-cursive: 'Pacifico', cursive;
+  --transition-smooth: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Theme 2: Cotton Candy Sunset */
+[data-theme="cotton-candy"] {
+  --midnight-purple: #34103f;
+  --deep-purple: #5c1860;
+  --vibrant-purple: #c026d3;
+  --primary-pink: #f43f5e;
+  --card-bg: rgba(255, 240, 245, 0.22);
+}
+
+/* Theme 3: Strawberry Velvet */
+[data-theme="strawberry"] {
+  --midnight-purple: #2e051b;
+  --deep-purple: #6a0b32;
+  --vibrant-purple: #be123c;
+  --primary-pink: #fb7185;
+  --romantic-red: #e11d48;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+body {
+  font-family: var(--font-main);
+  background: radial-gradient(circle at 20% 20%, #4a044e 0%, #1e0533 40%, #0d0118 100%);
+  color: var(--text-white);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Dynamic Interactive Starfield Canvas */
+#dream-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* App Header & Dream Bar */
+.app-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2.2rem;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(43, 7, 75, 0.45);
+  border-bottom: 1px solid rgba(255, 133, 162, 0.25);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.logo-heart {
+  font-size: 2rem;
+  animation: heartPulse 1.4s ease-in-out infinite;
+  display: inline-block;
+  filter: drop-shadow(0 0 12px var(--romantic-red));
+}
+
+.brand-title {
+  font-family: var(--font-fun);
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, #ffd6e0 50%, #ff85a2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.5px;
+}
+
+.brand-subtitle {
+  font-size: 0.82rem;
+  color: #fbcfe8;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: 50px;
+  padding: 0.5rem 1.1rem;
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.icon-btn:hover {
+  background: rgba(255, 105, 180, 0.35);
+  border-color: #ff85a2;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+}
+
+.icon-btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* Cozy Bad Dream Comfort Banner */
+.comfort-banner {
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(90deg, rgba(255, 51, 102, 0.35), rgba(168, 85, 247, 0.4), rgba(255, 51, 102, 0.35));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.6rem 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  animation: bannerGlow 4s ease-in-out infinite alternate;
+}
+
+.comfort-banner span.tag {
+  background: #ff3366;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 10px rgba(255, 51, 102, 0.6);
+}
+
+/* Main Container Layout */
+.main-stage {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1100px;
+  margin: 1.5rem auto 2.5rem;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+/* Companion Status & Interactive Character Bar */
+.cat-companion-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 182, 193, 0.35);
+  border-radius: 28px;
+  padding: 1.4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.cat-companion-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+  animation: auraRotate 12s linear infinite;
+}
+
+.companion-left {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* The Animated 2D Cat Avatar Box */
+.cat-avatar-box {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  perspective: 600px;
+  flex-shrink: 0;
+}
+
+.cat-avatar-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff3366, #c084fc, #ffd166);
+  z-index: 1;
+  animation: glowSpin 6s linear infinite;
+  filter: blur(4px);
+}
+
+.cat-avatar-inner {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #3b0764;
+  z-index: 2;
+  box-shadow: inset 0 0 15px rgba(255, 105, 180, 0.5);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cat-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  animation: catGentleBob 3.5s ease-in-out infinite;
+}
+
+.cat-avatar-box:hover .cat-avatar-inner {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.cat-avatar-box:active .cat-avatar-inner {
+  transform: scale(0.95);
+}
+
+.cat-pet-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: linear-gradient(135deg, #ff3366, #a855f7);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  border: 2px solid white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+  animation: heartPulse 1.8s infinite;
+  white-space: nowrap;
+}
+
+/* Cat Dialog & Comfort Talk */
+.companion-speech {
+  position: relative;
+  z-index: 2;
+}
+
+.companion-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-fun);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffd6e0;
+}
+
+.status-pill {
+  font-size: 0.75rem;
+  font-family: var(--font-main);
+  background: rgba(168, 85, 247, 0.3);
+  border: 1px solid #c084fc;
+  padding: 0.15rem 0.6rem;
+  border-radius: 12px;
+  color: #fbcfe8;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.bubble-dialog {
+  margin-top: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  border-top-left-radius: 4px;
+  padding: 0.75rem 1.2rem;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: #fff;
+  max-width: 480px;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: var(--transition-smooth);
+}
+
+.bubble-dialog::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid rgba(255, 255, 255, 0.2);
+  border-left: 8px solid transparent;
+}
+
+/* Companion Right: Cuddle & Happiness Meter */
+.companion-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+  position: relative;
+  z-index: 2;
+}
+
+.meter-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffd6e0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.meter-track {
+  width: 170px;
+  height: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 133, 162, 0.4);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+}
+
+.meter-fill {
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff3366, #ff85a2, #c084fc);
+  border-radius: 10px;
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  box-shadow: 0 0 12px rgba(255, 51, 102, 0.8);
+}
+
+.pet-btn-quick {
+  background: linear-gradient(135deg, #ff3366, #a855f7);
+  border: none;
+  color: white;
+  padding: 0.45rem 1.1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+  transition: var(--transition-smooth);
+}
+
+.pet-btn-quick:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6);
+}
+
+/* Nav Tabs / Journey Stages */
+.stage-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffe4e6;
+  padding: 0.75rem 1.4rem;
+  border-radius: 20px;
+  font-family: var(--font-fun);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(10px);
+}
+
+.tab-btn:hover {
+  background: rgba(255, 105, 180, 0.25);
+  border-color: #ff85a2;
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #ff3366 0%, #a855f7 100%);
+  border-color: #ffd6e0;
+  color: #ffffff;
+  box-shadow: 0 6px 24px rgba(255, 51, 102, 0.5);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.tab-badge {
+  background: rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 10px;
+}
+
+/* Stage Panels */
+.stage-content {
+  position: relative;
+  min-height: 440px;
+}
+
+.game-panel {
+  display: none;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  padding: 2.2rem;
+  box-shadow: var(--glass-shadow);
+  animation: panelFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.game-panel.active {
+  display: block;
+}
+
+/* Section Header */
+.panel-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.panel-header h2 {
+  font-family: var(--font-fun);
+  font-size: 2rem;
+  background: linear-gradient(135deg, #ffffff, #ffd6e0, #ff85a2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.4rem;
+}
+
+.panel-header p {
+  color: #fbcfe8;
+  font-size: 1.05rem;
+}
+
+/* ========================================================
+   LEVEL 1: The Sweet Dream Quiz Styles
+   ======================================================== */
+.quiz-container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.quiz-progress-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-steps {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.step-dot {
+  width: 32px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+}
+
+.step-dot.active {
+  background: #ff3366;
+  box-shadow: 0 0 10px #ff3366;
+  width: 48px;
+}
+
+.step-dot.completed {
+  background: #a855f7;
+}
+
+.quiz-card {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  margin-bottom: 1.5rem;
+}
+
+.question-text {
+  font-family: var(--font-fun);
+  font-size: 1.45rem;
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+  margin-bottom: 1.8rem;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.option-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: 18px;
+  padding: 1.2rem 1.4rem;
+  font-family: var(--font-main);
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  text-align: left;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.option-btn .opt-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.option-btn:hover {
+  background: rgba(255, 105, 180, 0.3);
+  border-color: #ff85a2;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 51, 102, 0.35);
+}
+
+.option-btn.selected {
+  background: linear-gradient(135deg, #ff3366, #a855f7);
+  border-color: #ffd6e0;
+  box-shadow: 0 0 25px rgba(255, 51, 102, 0.7);
+  transform: scale(1.04);
+}
+
+.quiz-feedback {
+  min-height: 70px;
+  margin-top: 1.2rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  padding: 1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  display: none;
+  animation: feedbackBounce 0.4s ease;
+}
+
+.quiz-nav-btns {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.action-btn {
+  background: linear-gradient(135deg, #ff3366 0%, #a855f7 100%);
+  border: none;
+  color: #fff;
+  font-family: var(--font-fun);
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 0.85rem 2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 6px 20px rgba(255, 51, 102, 0.45);
+  transition: var(--transition-smooth);
+}
+
+.action-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(255, 51, 102, 0.65);
+}
+
+.action-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* ========================================================
+   LEVEL 2: Cozy Memory Match Puzzle
+   ======================================================== */
+.memory-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.stat-pill {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  max-width: 680px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+@media (max-width: 640px) {
+  .memory-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 440px) {
+  .memory-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+  .card-face {
+    border-radius: 14px;
+  }
+  .card-back::after {
+    font-size: 1.6rem;
+  }
+  .card-front {
+    font-size: 1.6rem;
+  }
+  .card-label {
+    font-size: 0.58rem;
+  }
+}
+
+.memory-card {
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 20px;
+}
+
+.memory-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.memory-card.matched {
+  transform: rotateY(180deg) scale(0.96);
+  pointer-events: none;
+  animation: cardMatchedPulse 1.2s infinite alternate;
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+.card-front {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 105, 180, 0.35));
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  font-size: 2.2rem;
+  transform: rotateY(180deg);
+}
+
+.card-front img {
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.card-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 4px;
+}
+
+.card-back {
+  background: linear-gradient(135deg, #a855f7 0%, #ff3366 100%);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  font-size: 2rem;
+  color: #fff;
+}
+
+.card-back::after {
+  content: '🐾';
+  font-size: 2.2rem;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+  animation: pawWiggle 3s ease-in-out infinite;
+}
+
+.memory-card:hover:not(.flipped):not(.matched) {
+  transform: translateY(-4px) scale(1.04);
+}
+
+/* ========================================================
+   LEVEL 3: Catch The Sweet Dreams Mini-Game
+   ======================================================== */
+.game-canvas-wrapper {
+  position: relative;
+  max-width: 720px;
+  height: 420px;
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 182, 193, 0.5);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+  background: radial-gradient(circle at 50% 30%, #3b0764 0%, #1e0533 70%, #120224 100%);
+}
+
+#arcade-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.arcade-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 5, 51, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.arcade-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.arcade-hud {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.hud-item {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 0.35rem 0.9rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: var(--font-fun);
+  font-size: 1.05rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ========================================================
+   LEVEL 4: The Secret Love Note & Comfort Vault
+   ======================================================== */
+.vault-container {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.love-letter-envelope {
+  background: rgba(255, 255, 255, 0.16);
+  border: 2px solid rgba(255, 182, 193, 0.45);
+  border-radius: 28px;
+  padding: 2.2rem 2.4rem;
+  box-shadow: 0 15px 45px rgba(255, 51, 102, 0.25);
+  position: relative;
+  text-align: left;
+  backdrop-filter: blur(20px);
+}
+
+.letter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #ff3366, #a855f7);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 4px 12px rgba(255, 51, 102, 0.4);
+}
+
+.letter-title {
+  font-family: var(--font-fun);
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 1.2rem;
+}
+
+.letter-content {
+  font-size: 1.12rem;
+  line-height: 1.7;
+  color: #ffe4e6;
+  white-space: pre-line;
+  margin-bottom: 1.6rem;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 1.4rem;
+  border-radius: 18px;
+  border-left: 4px solid #ff3366;
+}
+
+.letter-author {
+  font-family: var(--font-cursive);
+  font-size: 1.6rem;
+  color: #ffd166;
+  text-align: right;
+  margin-top: 0.8rem;
+}
+
+.coupons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.8rem;
+}
+
+@media (max-width: 600px) {
+  .coupons-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.coupon-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 105, 180, 0.2));
+  border: 1px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 18px;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.coupon-card:hover {
+  transform: translateY(-4px) rotate(1deg);
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.3), rgba(168, 85, 247, 0.3));
+  border-color: #ffd166;
+  box-shadow: 0 8px 25px rgba(255, 51, 102, 0.4);
+}
+
+.coupon-icon {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.coupon-title {
+  font-family: var(--font-fun);
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 0.2rem;
+}
+
+.coupon-desc {
+  font-size: 0.8rem;
+  color: #fbcfe8;
+}
+
+/* Pet Sanctuary Interactive Mode */
+.petting-sanctuary {
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  padding: 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (max-width: 650px) {
+  .petting-sanctuary {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.interactive-cat-stage {
+  width: 170px;
+  height: 170px;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.interactive-cat-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #ff85a2;
+  box-shadow: 0 0 25px rgba(255, 51, 102, 0.6);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: catGentleBob 3.5s ease-in-out infinite;
+}
+
+.interactive-cat-stage:hover .interactive-cat-img {
+  transform: scale(1.06);
+}
+
+.interactive-cat-stage:active .interactive-cat-img {
+  transform: scale(0.95);
+  animation: purrShine 0.3s infinite;
+}
+
+.purr-meter-container {
+  flex-grow: 1;
+}
+
+.purr-status-text {
+  font-size: 1.05rem;
+  color: #fbcfe8;
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+.compliment-box {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 0.9rem 1.2rem;
+  font-style: italic;
+  font-size: 1rem;
+  color: #ffd166;
+  border-left: 3px solid #ffd166;
+  margin-top: 0.8rem;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+/* Modals & Sweet Toast */
+.toast-notice {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: linear-gradient(135deg, #ff3366, #9333ea);
+  color: white;
+  padding: 0.85rem 1.8rem;
+  border-radius: 30px;
+  font-family: var(--font-fun);
+  font-size: 1.05rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  z-index: 1000;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.toast-notice.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* App Footer */
+.app-footer {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 1.5rem;
+  color: #fbcfe8;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(30, 5, 51, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.app-footer a {
+  color: #ffd166;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Floating Particles (Hearts & Sparkles) */
+.floating-heart {
+  position: absolute;
+  pointer-events: none;
+  z-index: 100;
+  font-size: 1.5rem;
+  animation: floatUpFade 1.4s ease-out forwards;
+}
+
+/* ========================================================
+   KEYFRAME ANIMATIONS
+   ======================================================== */
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+
+@keyframes catGentleBob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(1.5deg); }
+}
+
+@keyframes glowSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes auraRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes bannerGlow {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.2); }
+}
+
+@keyframes pawWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+@keyframes cardMatchedPulse {
+  0% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+  100% { box-shadow: 0 0 25px rgba(255, 51, 102, 0.9); }
+}
+
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes feedbackBounce {
+  0% { transform: scale(0.9); opacity: 0; }
+  60% { transform: scale(1.04); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes floatUpFade {
+  0% {
+    transform: translateY(0) scale(0.7);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-80px) scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes purrShine {
+  0%, 100% { transform: scale(0.95) rotate(0deg); }
+  25% { transform: scale(0.97) rotate(-1.5deg); }
+  75% { transform: scale(0.97) rotate(1.5deg); }
+}
+
+/* ========================================================
+   LEVEL 1: PARIGETTU BUDDU RUNNER GAME
+   ======================================================== */
+.runner-game-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.runner-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  padding: 0.8rem 1.4rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+}
+
+.hud-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.hud-label {
+  color: #ffd6e0;
+}
+
+.hud-value {
+  font-family: var(--font-fun);
+  font-size: 1.15rem;
+  color: #fff;
+}
+
+.hud-timer-box {
+  background: rgba(255, 51, 102, 0.25);
+  border: 1px solid rgba(255, 96, 143, 0.5);
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.hud-timer-box.hurry {
+  animation: timerPanic 0.8s infinite alternate;
+  background: rgba(255, 0, 60, 0.45);
+  border-color: #ff003c;
+}
+
+@keyframes timerPanic {
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 0, 60, 0.5); }
+  100% { transform: scale(1.08); box-shadow: 0 0 25px rgba(255, 0, 60, 0.9); }
+}
+
+/* Road Progress Track */
+.road-progress-track {
+  position: relative;
+  width: 100%;
+  height: 22px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+}
+
+.road-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff608f, #ffd166);
+  border-radius: 20px;
+  box-shadow: 0 0 14px rgba(255, 96, 143, 0.7);
+  transition: width 0.15s ease-out;
+}
+
+.road-progress-car {
+  position: absolute;
+  top: -8px;
+  left: 0%;
+  transform: translateX(-50%);
+  font-size: 1.6rem;
+  transition: left 0.15s ease-out;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+}
+
+.road-progress-flag {
+  position: absolute;
+  right: 6px;
+  font-size: 1.2rem;
+}
+
+/* Canvas Wrapper */
+.runner-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  max-height: 70vh;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 133, 162, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  background: #0d0118;
+}
+
+#runner-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+
+#runner-canvas:active {
+  cursor: grabbing;
+}
+
+/* Runner Overlay (Start/Pause/Finish) */
+.runner-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 2, 28, 0.88);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  z-index: 20;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.runner-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.overlay-character-badge {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  animation: catGentleBob 2s infinite ease-in-out;
+}
+
+.overlay-title {
+  font-family: var(--font-fun);
+  font-size: 2.2rem;
+  color: #ffd6e0;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 0 18px rgba(255, 96, 143, 0.6);
+}
+
+.overlay-desc {
+  color: #ffe4e6;
+  max-width: 480px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.overlay-controls-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: #fbcfe8;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+/* On-screen Steer Controls */
+.runner-mobile-controls {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.2rem;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.steer-btn {
+  pointer-events: auto;
+  background: rgba(43, 7, 75, 0.65);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  font-family: var(--font-fun);
+  font-size: 1.05rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.steer-btn:active {
+  transform: scale(0.92);
+  background: var(--primary-pink);
+}
+
+.steer-honk {
+  background: rgba(255, 209, 102, 0.35);
+  border-color: #ffd166;
+  color: #ffd166;
+}
+
+/* ========================================================
+   UNIVERSAL DEFEAT SCREEN: " YEAH, WHAAATEVER"
+   ======================================================== */
+.defeat-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 1, 24, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 3000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  animation: defeatFadeIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes defeatFadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.defeat-card {
+  background: linear-gradient(145deg, #2a0836, #4c0e3e, #1a0326);
+  border: 3px solid #ff608f;
+  border-radius: 30px;
+  padding: 2.2rem 2.4rem;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(255, 96, 143, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.defeat-decor-row {
+  margin-bottom: 0.8rem;
+}
+
+.defeat-badge {
+  display: inline-block;
+  background: rgba(255, 96, 143, 0.25);
+  border: 1px solid #ff85a2;
+  color: #ffd6e0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+}
+
+.defeat-emoji-box {
+  margin-bottom: 0.5rem;
+}
+
+.defeat-sticker {
+  font-size: 4.5rem;
+  display: inline-block;
+  animation: sassyWiggle 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes sassyWiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-8deg) scale(1.08); }
+  75% { transform: rotate(8deg) scale(1.08); }
+}
+
+.defeat-title {
+  font-family: var(--font-fun);
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #ffd166, #ff608f, #ff85a2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  text-shadow: 0 4px 20px rgba(255, 96, 143, 0.5);
+}
+
+.defeat-speech-bubble {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px dashed #ffd6e0;
+  color: #fff;
+  font-style: italic;
+  font-size: 1rem;
+  padding: 0.4rem 1rem;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+}
+
+.defeat-msg {
+  color: #ffe4e6;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 1.8rem;
+}
+
+.defeat-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ========================================================
+   CHARACTER SELECTION MODAL
+   ======================================================== */
+.character-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 1, 24, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 2500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.character-modal-card {
+  background: linear-gradient(145deg, #260733, #450c38);
+  border: 2px solid #ff85a2;
+  border-radius: 28px;
+  padding: 1.8rem 2rem;
+  max-width: 680px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+}
+
+.character-selection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.character-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 1.2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.character-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  border-color: #ff85a2;
+  box-shadow: 0 8px 25px rgba(255, 96, 143, 0.35);
+}
+
+.character-card.active {
+  border-color: #ffd166;
+  background: linear-gradient(135deg, rgba(255, 96, 143, 0.35), rgba(168, 85, 247, 0.35));
+  box-shadow: 0 0 25px rgba(255, 209, 102, 0.5);
+}
+
+.char-avatar-emoji {
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+}
+
+.char-name {
+  font-family: var(--font-fun);
+  font-size: 1.15rem;
+  color: #ffd6e0;
+}
+
+.char-animal {
+  font-size: 0.85rem;
+  color: #fbcfe8;
+}
+
+.char-trait-pill {
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: #ffd6e0;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  transform: scale(1.2);
+  color: #fff;
+}
